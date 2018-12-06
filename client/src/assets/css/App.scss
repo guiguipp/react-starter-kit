@@ -1,0 +1,85 @@
+$colors: (
+    main: black,
+    accent: white,
+);
+
+@function color($color-name) {
+    @return map-get($colors, $color-name)
+}
+
+// Screen Resizing
+$screen-sm: 480px;
+$screen-mm: 670px;
+$screen-md: 768px;
+$screen-lg: 992px;
+$screen-xl: 1024px;
+
+// Small devices
+@mixin sm {
+    @media (min-width: #{$screen-sm}) {
+        @content;
+    }
+}
+// Mid-medium devices
+@mixin mm {
+    @media (min-width: #{$screen-mm}) {
+        @content;
+    }
+}
+
+// Medium devices
+@mixin md {
+    @media (min-width: #{$screen-md}) {
+        @content;
+    }
+}
+
+// larger devices
+@mixin lg {
+    @media (min-width: #{$screen-lg}) {
+        @content;
+    }
+}
+
+@mixin xl {
+    @media (min-width: #{$screen-xl}) {
+        @content;
+    }
+}
+
+$h1-font-sizes: (
+    null: 40px,
+    480px: 40px,
+    768px: 45px,
+    1024px: 60px,
+);
+
+$h2-font-sizes: (
+    null: 25px,
+    480px: 27px,
+    768px: 31px,
+    1024px: 35px,
+);
+
+$p-font-sizes: (
+    null: 20px,
+    1024px: 35px,
+);
+
+
+@mixin font-size($fs-map) {
+    @each $fs-breakpoint, $fs-font-size in $fs-map {
+        @if $fs-breakpoint == null {
+        font-size: $fs-font-size;
+        }
+        @else {
+            @media screen and (min-width: $fs-breakpoint) {
+                font-size: $fs-font-size;
+                }
+            }
+        }
+    }
+
+p {
+    color: color(main);
+}
